@@ -1,0 +1,25 @@
+CONCLUSIONES Y HALLAZGOS
+
+1. Se implementó una prueba de carga sobre el servicio de login utilizando Apache JMeter, configurando un throughput constante de 20 transacciones por segundo (TPS), equivalente a 1200 muestras por minuto.
+
+2. La parametrización de datos mediante archivo CSV permitió simular múltiples usuarios concurrentes, replicando un escenario más cercano a condiciones reales de uso.
+
+3. Se aplicaron validaciones mediante assertions para garantizar que las respuestas cumplan con los criterios establecidos:
+
+   * Código de respuesta HTTP 200
+   * Tiempo de respuesta menor o igual a 1.5 segundos
+
+4. Durante la ejecución de la prueba se identificó un error de disponibilidad en el servicio (SSL 526), lo cual indica un problema en el servidor de destino. Este tipo de error impacta directamente en la tasa de error y limita la validez de los resultados obtenidos.
+
+5. La tasa de error debe mantenerse por debajo del 3% del total de peticiones. Sin embargo, debido a la falla del servicio, este indicador puede verse afectado y no reflejar el comportamiento real del sistema bajo condiciones normales.
+
+6. El control del throughput mediante el temporizador de rendimiento constante permitió simular una carga estable y controlada, lo cual es fundamental para obtener métricas confiables de rendimiento.
+
+RECOMENDACIONES
+
+* Validar la disponibilidad del servicio antes de ejecutar pruebas de carga.
+* Ejecutar la prueba en un entorno estable para obtener resultados más precisos.
+* Incrementar progresivamente la carga para identificar el punto de degradación del sistema.
+* Monitorear recursos del servidor (CPU, memoria) durante la prueba para un análisis más completo.
+
+En conclusión, la prueba permite evaluar el comportamiento del sistema bajo carga controlada, identificando posibles fallos de rendimiento y disponibilidad que podrían afectar la experiencia del usuario final.
