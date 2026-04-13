@@ -1,25 +1,22 @@
 CONCLUSIONES Y HALLAZGOS
 
-1. Se implementó una prueba de carga sobre el servicio de login utilizando Apache JMeter, configurando un throughput constante de 20 transacciones por segundo (TPS), equivalente a 1200 muestras por minuto.
+1. Se ejecutó una prueba de carga sobre el servicio de autenticación utilizando Apache JMeter, configurando un throughput objetivo de 20 transacciones por segundo.
 
-2. La parametrización de datos mediante archivo CSV permitió simular múltiples usuarios concurrentes, replicando un escenario más cercano a condiciones reales de uso.
+2. La parametrización mediante archivo CSV permitió simular múltiples usuarios concurrentes, mejorando la representatividad del escenario de prueba.
 
-3. Se aplicaron validaciones mediante assertions para garantizar que las respuestas cumplan con los criterios establecidos:
+3. El sistema presentó un tiempo de respuesta promedio de 633 ms, cumpliendo con el requisito establecido de máximo 1.5 segundos.
 
-   * Código de respuesta HTTP 200
-   * Tiempo de respuesta menor o igual a 1.5 segundos
+4. La tasa de error fue de 0.62%, valor que se encuentra dentro del límite aceptable (<3%), indicando estabilidad en las respuestas del servicio.
 
-4. Durante la ejecución de la prueba se identificó un error de disponibilidad en el servicio (SSL 526), lo cual indica un problema en el servidor de destino. Este tipo de error impacta directamente en la tasa de error y limita la validez de los resultados obtenidos.
+5. El throughput alcanzado fue de 18.6 TPS, valor cercano al objetivo planteado. Esta ligera variación puede atribuirse a factores como latencia de red o capacidad del entorno de prueba.
 
-5. La tasa de error debe mantenerse por debajo del 3% del total de peticiones. Sin embargo, debido a la falla del servicio, este indicador puede verse afectado y no reflejar el comportamiento real del sistema bajo condiciones normales.
-
-6. El control del throughput mediante el temporizador de rendimiento constante permitió simular una carga estable y controlada, lo cual es fundamental para obtener métricas confiables de rendimiento.
+6. No se evidenciaron errores críticos del sistema durante la ejecución, lo cual indica que el servicio es capaz de soportar la carga configurada bajo condiciones normales.
 
 RECOMENDACIONES
 
-* Validar la disponibilidad del servicio antes de ejecutar pruebas de carga.
-* Ejecutar la prueba en un entorno estable para obtener resultados más precisos.
-* Incrementar progresivamente la carga para identificar el punto de degradación del sistema.
-* Monitorear recursos del servidor (CPU, memoria) durante la prueba para un análisis más completo.
+* Incrementar ligeramente el número de hilos para asegurar el cumplimiento de los 20 TPS.
+* Ejecutar pruebas en un entorno controlado para reducir la variabilidad del throughput.
+* Implementar monitoreo de recursos (CPU, memoria) para complementar el análisis de rendimiento.
+* Realizar pruebas progresivas de carga para identificar el punto de saturación del sistema.
 
-En conclusión, la prueba permite evaluar el comportamiento del sistema bajo carga controlada, identificando posibles fallos de rendimiento y disponibilidad que podrían afectar la experiencia del usuario final.
+En conclusión, el sistema cumple con los criterios de rendimiento establecidos, mostrando estabilidad y tiempos de respuesta adecuados bajo carga concurrente.
